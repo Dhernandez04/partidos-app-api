@@ -18,10 +18,12 @@ module.exports = (sequelize,type)=>{
             type:type.DATE
         },
         goles_local:{
-            type:type.INTEGER(4)
+            type:type.INTEGER(4),
+            allowNull:true
         },
         goles_visitante:{
-            type:type.INTEGER(4)
+            type:type.INTEGER(4),
+            allowNull:true
         },
 
     },{timestamps:false})

@@ -2,7 +2,10 @@ const {Partido} = require('../database/config');
 
 const obtenerPartidos = async (req, res) => {
     
-    const Partidos = await Partido.findAll();
+    const Partidos = await Partido.findAll({ order: [
+      // Will escape title and validate DESC against a list of valid direction parameters
+      ['fecha', 'DESC'],
+    ]});
       res.json({
         ok: true,
         Partidos,
@@ -14,10 +17,16 @@ const obtenerPartidos = async (req, res) => {
     try {
       const { local,visitante,fecha } = req.body;
    const usuario = req.id;
-      const Partido = Partido.create({usuario,local,visitante,fecha});
+      if(local === visitante){
+        return res.json({
+          ok:false,
+          msg:"No se puede crear el partido con un solo equipo"
+        })
+      }
+      const partido = await Partido.create({usuario,local,visitante,fecha,goles_local:0,goles_visitante:0});
       res.json({
         ok: true,
-        Partido,
+        partido,
         mgs: "El Partido se creo satisfactoriamente.",
       });
       

@@ -14,7 +14,7 @@ const obtenerEquipos = async (req, res) => {
     try {
       const { nombre } = req.body;
    
-      const equipo = Equipo.create({nombre});
+      const equipo = await Equipo.create({nombre});
       res.json({
         ok: true,
         equipo,

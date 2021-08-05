@@ -7,14 +7,13 @@ const obtenerUsuarios = async (req, res) => {
       res.json({
         ok: true,
         Usuarios,
-        count
       });
   }
   const crearUsuario = async (req, res) => {
     try {
       const { nombre, username, correo, password } = req.body;
 
-      const usuario = Usuario.build({nombre, username, correo, password});
+      const usuario = await Usuario.build({nombre, username, correo, password});
       const salt = bcrypt.genSaltSync();
       usuario.password = bcrypt.hashSync(password, salt);
       await usuario.save();
