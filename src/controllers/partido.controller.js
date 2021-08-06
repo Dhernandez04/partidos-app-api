@@ -2,7 +2,7 @@ const {Partido} = require('../database/config');
 
 const obtenerPartidos = async (req, res) => {
     
-    const Partidos = await Partido.findAll({ order: [
+    const Partidos = await Partido.findAll({include: { all: true }, order: [
       // Will escape title and validate DESC against a list of valid direction parameters
       ['fecha', 'DESC'],
     ]});
