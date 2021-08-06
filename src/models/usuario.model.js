@@ -9,10 +9,12 @@ module.exports = (sequelize,type)=>{
             type:type.STRING(100)
         },
         correo:{
-            type:type.STRING(50)
+            type:type.STRING(50),
+            unique:true,
         },
         username:{
-            type:type.STRING(10)
+            type:type.STRING(10),
+            unique:true
         },
         password:{
             type:type.STRING(100)
