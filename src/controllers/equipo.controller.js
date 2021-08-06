@@ -9,6 +9,16 @@ const obtenerEquipos = async (req, res) => {
         
       });
   }
+  
+const obtenerEquipo = async (req, res) => {
+    const id = req.params.id;
+  const equipos = await Equipo.findOne({where: { id:id } });
+    res.json({
+      ok: true,
+      equipos,
+      
+    });
+}
   const crearEquipo = async (req, res) => {
    
     try {
@@ -84,6 +94,7 @@ const obtenerEquipos = async (req, res) => {
   module.exports = {
     obtenerEquipos,
     crearEquipo,
+    obtenerEquipo,
     editarEquipo,
     EliminarEquipo
   }
