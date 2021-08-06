@@ -70,7 +70,7 @@ const register = async (req, res) => {
 const renewToken = async(req,res) => {
    
     const id = req.id;
-  
+
     const token = await generarJWT(id);
     //obtener el usuario
     const usuario = await Usuario.findOne({where: { id:id } });

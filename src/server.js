@@ -9,6 +9,7 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
+            home:'/',
             auth:       '/api/auth',
             equipos:  '/api/equipos',
             partidos:   '/api/partidos',
@@ -38,11 +39,11 @@ class Server {
     }
 
     routes() {
-        this.app.use( this.paths.auth, require('./routes/index.routes'));
         this.app.use( this.paths.auth, require('./routes/auth'));
         this.app.use( this.paths.equipos, require('./routes/equipos.routes'));
         this.app.use( this.paths.usuarios, require('./routes/usuarios.routes'));
         this.app.use( this.paths.partidos, require('./routes/partidos.routes'));
+        this.app.use( require('./routes/index.routes'));
         
     }
 
