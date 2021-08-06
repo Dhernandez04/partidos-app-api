@@ -12,6 +12,15 @@ const obtenerPartidos = async (req, res) => {
       
       });
   }
+  const obtenerPartido = async (req, res) => {
+    const id = req.params.id;
+  const equipos = await Partido.findOne({where: { id:id } });
+    res.json({
+      ok: true,
+      equipos,
+      
+    });
+}
   const crearPartido = async (req, res) => {
    
     try {
@@ -94,5 +103,6 @@ const obtenerPartidos = async (req, res) => {
     obtenerPartidos,
     crearPartido,
     editarPartido,
-    EliminarPartido
+    EliminarPartido,
+    obtenerPartido
   }
