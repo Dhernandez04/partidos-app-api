@@ -23,7 +23,7 @@ const obtenerPartidos = async (req, res) => {
           msg:"No se puede crear el partido con un solo equipo"
         })
       }
-      const partido = await Partido.create({usuario,local,visitante,fecha,goles_local:0,goles_visitante:0});
+      const partido = await Partido.create({usuario,local,visitante,fecha,goles_local:null,goles_visitante:null});
       res.json({
         ok: true,
         partido,
